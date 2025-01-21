@@ -325,8 +325,8 @@ export default function Home() {
                       </a>
                     </CardTitle>
                     <CardDescription>
-                      <p className="text-muted-foreground">Part-time · 2 yrs</p>
-                      <p className="text-sm text-muted-foreground/60">Bolton, England, United Kingdom · Hybrid</p>
+                      <span className="block text-muted-foreground">Part-time · 2 yrs</span>
+                      <span className="block text-sm text-muted-foreground/60">Bolton, England, United Kingdom · Hybrid</span>
                     </CardDescription>
                   </div>
                 </div>
@@ -428,8 +428,8 @@ export default function Home() {
                       </a>
                     </CardTitle>
                     <CardDescription>
-                      <p className="text-muted-foreground">Full-time · 1 yr 1 mo</p>
-                      <p className="text-sm text-muted-foreground/60">Colombo District, Western Province, Sri Lanka · Hybrid</p>
+                      <span className="block text-muted-foreground">Full-time · 1 yr 1 mo</span>
+                      <span className="block text-sm text-muted-foreground/60">Colombo District, Western Province, Sri Lanka · Hybrid</span>
                     </CardDescription>
                   </div>
                 </div>
