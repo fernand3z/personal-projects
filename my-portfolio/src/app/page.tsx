@@ -1,183 +1,576 @@
+"use client"
+
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRightIcon } from "@radix-ui/react-icons"
-import Link from "next/link"
-import Image from "next/image"
+import { Navbar } from "@/components/navbar"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 
 export default function Home() {
+  const [showMore, setShowMore] = useState(false)
+  const [showMoreCerts, setShowMoreCerts] = useState(false)
+  const [visibleProjectCount, setVisibleProjectCount] = useState(6) // Start with 6 visible projects
+  const [visibleCertCount, setVisibleCertCount] = useState(4) // Start with 4 visible certificates
+
+  const additionalProjects = Array(6).fill({
+    title: "Coming Soon",
+    description: "Future project planned",
+    content: "Another exciting project in the pipeline. Stay tuned for updates!",
+    status: "In Planning"
+  });
+
+  const handleShowMoreProjects = () => {
+    if (visibleProjectCount >= 6 + additionalProjects.length) {
+      setVisibleProjectCount(6) // Reset to initial count
+    } else {
+      setVisibleProjectCount(prev => Math.min(prev + 3, 6 + additionalProjects.length))
+    }
+  }
+
+  const showingAllProjects = visibleProjectCount >= 6 + additionalProjects.length
+
+  const handleShowMoreCerts = () => {
+    if (visibleCertCount >= 12) { // Total number of certificates
+      setVisibleCertCount(4) // Reset to initial count
+    } else {
+      setVisibleCertCount(prev => Math.min(prev + 4, 12))
+    }
+  }
+
+  const showingAllCerts = visibleCertCount >= 12
+
   return (
-    <div className="flex flex-col items-center">
-      {/* Hero Section */}
-      <section id="about" className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none animate-fade-up">
-                Amoda Fernando
-              </h1>
-              <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400 animate-fade-up [--animation-delay:200ms]">
-                Passionate developer with a knack for solving complex problems through code. Mostly self-taught and driven by an unyielding curiosity to explore and master new technologies.
-              </p>
-            </div>
-            <div className="space-x-4 animate-fade-up [--animation-delay:400ms]">
-              <Link href="#contact">
-                <Button className="px-8">
-                  Contact Me
-                  <ArrowRightIcon className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <div className="max-w-4xl mx-auto px-4 py-12">
+        {/* Hero Section */}
+        <section id="about" className="mb-24 text-center">
+          <h1 className="text-4xl font-bold mb-4 gradient-text animate-fade-in">
+            Amoda Fernando
+          </h1>
+          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto animate-fade-in delay-200">
+            Passionate developer with a knack for solving complex problems through code. Mostly self-taught and driven by an unyielding curiosity to explore and master new technologies.
+          </p>
+          <Button 
+            variant="default" 
+            className="bg-primary hover:bg-primary/90 text-primary-foreground animate-fade-in delay-300 hover-lift"
+            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            View Projects
+          </Button>
+        </section>
 
-      {/* Skills Section */}
-      <section id="skills" className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
-        <div className="container px-4 md:px-6">
-          <h2 className="text-3xl font-bold tracking-tighter text-center mb-12 animate-fade-up">
-            Skills & Technologies
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-up [--animation-delay:200ms]">
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold">Languages</h3>
-              <div className="grid grid-cols-2 gap-2">
-                {["JavaScript", "Python", "HTML", "CSS", "SQL", "PHP"].map((lang) => (
-                  <div key={lang} className="p-2 bg-background rounded-md shadow-sm">
-                    {lang}
-                  </div>
-                ))}
+        {/* Skills Section */}
+        <section id="skills" className="mb-24 animate-fade-in">
+          <h2 className="text-3xl font-bold mb-12 text-center gradient-text">Skills && Technologies</h2>
+          <div className="card-spotify rounded-lg p-8">
+            <div className="grid grid-cols-2 gap-12">
+              <div className="animate-slide-in delay-100">
+                <h3 className="text-xl font-semibold mb-6 text-foreground">Languages</h3>
+                <ul className="space-y-3 text-muted-foreground">
+                  {["JavaScript", "Python", "HTML", "CSS", "SQL", "PHP"].map((lang, i) => (
+                    <li key={lang} className={`animate-fade-in delay-${(i + 1) * 100}`}>
+                      {lang}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold">Tools</h3>
-              <div className="grid grid-cols-2 gap-2">
-                {["Git", "Docker", "Linux", "VS Code", "Node.js", "PostgreSQL"].map((tool) => (
-                  <div key={tool} className="p-2 bg-background rounded-md shadow-sm">
-                    {tool}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section id="projects" className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
-          <h2 className="text-3xl font-bold tracking-tighter text-center mb-12 animate-fade-up">
-            Projects
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="group relative overflow-hidden rounded-lg shadow-lg transition-transform hover:scale-105 animate-fade-up [--animation-delay:200ms]">
-              <div className="p-4">
-                <h3 className="text-xl font-bold">Update Script</h3>
-                <p className="text-gray-500 dark:text-gray-400 mt-2">
-                  A script for automating system updates
-                </p>
-                <a
-                  href="https://github.com/fernand3z/update-script"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center text-primary hover:underline"
-                >
-                  View on GitHub
-                  <ArrowRightIcon className="ml-2 h-4 w-4" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Experience Section */}
-      <section id="experience" className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
-        <div className="container px-4 md:px-6">
-          <h2 className="text-3xl font-bold tracking-tighter text-center mb-12 animate-fade-up">
-            Work Experience
-          </h2>
-          <div className="space-y-8 animate-fade-up [--animation-delay:200ms]">
-            <div className="bg-background rounded-lg p-6 shadow-lg">
-              <h3 className="text-xl font-bold">System Administrator</h3>
-              <p className="text-gray-500 dark:text-gray-400">NUMBER PLATE CLINIC · Bolton, England</p>
-              <p className="text-sm text-muted-foreground">Part-time · Hybrid · 2 years</p>
-              <div className="mt-4 space-y-2">
-                <p>Independently managed servers and networks, ensuring consistent uptime and robust security.</p>
-                <p>Optimized workflows by implementing AI tools and advanced automation strategies.</p>
-                <p>Enhanced cybersecurity measures and ensured compliance with industry regulations.</p>
-                <p>Provided expert user support, enabling seamless daily operations.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Education Section */}
-      <section id="education" className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
-          <h2 className="text-3xl font-bold tracking-tighter text-center mb-12 animate-fade-up">
-            Education
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-up [--animation-delay:200ms]">
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold">Associate's degree, Computer Science</h3>
-              <div className="space-y-2">
-                <h4 className="font-medium">Relevant Coursework</h4>
-                <ul className="list-disc list-inside space-y-1 text-gray-500 dark:text-gray-400">
-                  {[
-                    "Introduction to Programming",
-                    "Data Structures and Algorithms",
-                    "Object-Oriented Programming",
-                    "Web Development Fundamentals",
-                    "Database Management Systems",
-                  ].map((course) => (
-                    <li key={course}>{course}</li>
+              <div className="animate-slide-in delay-200">
+                <h3 className="text-xl font-semibold mb-6 text-foreground">Tools</h3>
+                <ul className="space-y-3 text-muted-foreground">
+                  {["Git", "Docker", "Linux", "VS Code", "Node.js", "PostgreSQL"].map((tool, i) => (
+                    <li key={tool} className={`animate-fade-in delay-${(i + 1) * 100}`}>
+                      {tool}
+                    </li>
                   ))}
                 </ul>
               </div>
             </div>
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold">Certifications</h3>
-              <div className="space-y-4">
-                <div className="bg-background rounded-lg p-4 shadow-sm">
-                  <h4 className="font-medium">Career Essentials in GitHub Professional Certificate</h4>
-                  <p className="text-sm text-gray-500">LinkedIn Learning and GitHub · January 2025</p>
+          </div>
+        </section>
+
+        {/* Projects Section */}
+        <section id="projects" className="mb-24 animate-fade-in">
+          <h2 className="text-3xl font-bold mb-12 text-center gradient-text">Projects</h2>
+          <div className="space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* First 6 cards (always visible) */}
+              {/* Update Script */}
+              <Card className="hover-lift flex flex-col">
+                <CardHeader>
+                  <CardTitle>Update Script</CardTitle>
+                  <CardDescription>
+                    A script for automating system updates and maintenance tasks
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Streamlines the process of keeping your system up-to-date with automated checks and updates
+                  </p>
+                </CardContent>
+                <CardFooter className="mt-auto">
+                  <a
+                    href="https://github.com/fernand3z/update-script"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-1 transition-colors group"
+                  >
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">
+                      View on GitHub
+                    </span>
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
+                  </a>
+                </CardFooter>
+              </Card>
+
+              {/* Portfolio Website */}
+              <Card className="hover-lift flex flex-col">
+                <CardHeader>
+                  <CardTitle>Portfolio Website</CardTitle>
+                  <CardDescription>
+                    Modern portfolio website built with Next.js and Tailwind CSS
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    A responsive and animated portfolio showcasing my projects and skills
+                  </p>
+                </CardContent>
+                <CardFooter className="mt-auto">
+                  <a
+                    href="https://github.com/fernand3z/portfolio"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-1 transition-colors group"
+                  >
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">
+                      View on GitHub
+                    </span>
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
+                  </a>
+                </CardFooter>
+              </Card>
+
+              {/* Task Manager */}
+              <Card className="hover-lift flex flex-col">
+                <CardHeader>
+                  <CardTitle>Task Manager</CardTitle>
+                  <CardDescription>
+                    CLI task management application with priority scheduling
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Efficient task organization with priority-based scheduling and deadline tracking
+                  </p>
+                </CardContent>
+                <CardFooter className="mt-auto">
+                  <a
+                    href="#"
+                    className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-1 transition-colors group"
+                  >
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">
+                      Coming Soon
+                    </span>
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
+                  </a>
+                </CardFooter>
+              </Card>
+
+              {/* First 3 "Coming Soon" cards (always visible) */}
+              {[1, 2, 3].map((_, index) => (
+                <Card key={`visible-${index}`} className="hover-lift opacity-75 flex flex-col">
+                  <CardHeader>
+                    <CardTitle>Coming Soon</CardTitle>
+                    <CardDescription>
+                      New project under development
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      Exciting new project in the works. Stay tuned for updates!
+                    </p>
+                  </CardContent>
+                  <CardFooter className="mt-auto">
+                    <span className="text-muted-foreground inline-flex items-center space-x-1">
+                      Under Development →
+                    </span>
+                  </CardFooter>
+                </Card>
+              ))}
+
+              {/* Additional cards */}
+              {additionalProjects.slice(0, visibleProjectCount - 6).map((project, index) => (
+                <Card key={`hidden-${index}`} className="hover-lift opacity-75 flex flex-col animate-fade-in">
+                  <CardHeader>
+                    <CardTitle>{project.title}</CardTitle>
+                    <CardDescription>
+                      {project.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      {project.content}
+                    </p>
+                  </CardContent>
+                  <CardFooter className="mt-auto">
+                    <span className="text-muted-foreground inline-flex items-center space-x-1">
+                      {project.status} →
+                    </span>
+                  </CardFooter>
+                </Card>
+              ))}
+            </div>
+
+            {/* Show More Projects Button */}
+            {visibleProjectCount < 6 + additionalProjects.length && (
+              <div className="flex justify-center">
+                <button
+                  onClick={handleShowMoreProjects}
+                  className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-2 transition-colors group"
+                >
+                  <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-transform duration-200">
+                    <span>Show More</span>
+                    <span className="transform transition-transform duration-200">↓</span>
+                  </div>
+                </button>
+              </div>
+            )}
+
+            {/* Show Less Button - only visible when all projects are shown */}
+            {showingAllProjects && (
+              <div className="flex justify-center">
+                <button
+                  onClick={handleShowMoreProjects}
+                  className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-2 transition-colors group"
+                >
+                  <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-transform duration-200">
+                    <span>Show Less</span>
+                    <span className="transform transition-transform duration-200 rotate-180">↓</span>
+                  </div>
+                </button>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* Experience Section */}
+        <section id="experience" className="mb-24 animate-fade-in">
+          <h2 className="text-3xl font-bold mb-12 text-center gradient-text">Experience</h2>
+          <div className="space-y-8">
+            {/* NUMBER PLATE CLINIC Experience */}
+            <div className="card-spotify rounded-lg p-8 animate-scale-in hover-lift">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-card">
+                  <img 
+                    src="/npc-logo.jpg" 
+                    alt="NPC Logo" 
+                    className="w-full h-full object-contain p-1" 
+                  />
                 </div>
-                <div className="bg-background rounded-lg p-4 shadow-sm">
-                  <h4 className="font-medium">Career Essentials in System Administration</h4>
-                  <p className="text-sm text-gray-500">LinkedIn Learning and Microsoft · January 2025</p>
+                <div className="flex-grow">
+                  <h3 className="text-xl font-bold text-foreground">
+                    <a 
+                      href="https://www.linkedin.com/company/number-plate-clinic/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="hover:text-primary transition-colors"
+                    >
+                      NUMBER PLATE CLINIC
+                    </a>
+                  </h3>
+                  <p className="text-muted-foreground">Part-time · 2 yrs</p>
+                  <p className="text-sm text-muted-foreground/60 mb-2">Bolton, England, United Kingdom · Hybrid</p>
+
+                  {/* System Administrator Role */}
+                  <div className="mt-6">
+                    <h4 className="text-lg font-semibold text-foreground">System Administrator</h4>
+                    <p className="text-sm text-muted-foreground/60 mb-4">Feb 2024 - Present · 1 yr</p>
+                    <p className="text-muted-foreground mb-4">
+                      As a System Administrator at NUMBER PLATE CLINIC, I took on a more strategic and comprehensive role, directly managing and enhancing IT infrastructure to support organizational growth.
+                    </p>
+                    <div className="mb-4">
+                      <h5 className="text-foreground font-medium mb-2">Key Achievements:</h5>
+                      <ul className="space-y-3 text-muted-foreground list-disc pl-4">
+                        {[
+                          "Independently managed servers and networks, ensuring consistent uptime and robust security.",
+                          "Optimized workflows by implementing AI tools and advanced automation strategies, increasing efficiency.",
+                          "Enhanced cybersecurity measures and ensured compliance with industry regulations.",
+                          "Provided expert user support, enabling seamless daily operations and reducing system downtime."
+                        ].map((item, i) => (
+                          <li key={i} className={`animate-fade-in delay-${(i + 1) * 100}`}>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <span>Skills:</span>
+                      <span className="text-foreground">IT Service Management, Systems Management</span>
+                      <button 
+                        onClick={() => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })}
+                        className="text-muted-foreground hover:text-foreground"
+                      >
+                        Show all 8 skills
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Assistant System Administrator Role */}
+                  <div className="mt-8 border-t border-border pt-6">
+                    <h4 className="text-lg font-semibold text-foreground">Assistant System Administrator</h4>
+                    <p className="text-sm text-muted-foreground/60 mb-4">Feb 2023 - 2024 · 1 yr</p>
+                    <p className="text-muted-foreground mb-4">
+                      As an Assistant System Administrator at NUMBER PLATE CLINIC, I supported the IT infrastructure to ensure reliable and secure operations. I worked closely with the IT team to maintain systems and assist in implementing solutions that enhanced workflow efficiency.
+                    </p>
+                    <div className="mb-4">
+                      <h5 className="text-foreground font-medium mb-2">Key Responsibilities:</h5>
+                      <ul className="space-y-3 text-muted-foreground list-disc pl-4">
+                        {[
+                          "Assisted in managing servers and networks, ensuring system reliability and security.",
+                          "Supported infrastructure optimization for seamless business operations.",
+                          "Utilized automation tools like PowerShell to improve efficiency and reduce manual tasks.",
+                          "Contributed to strengthening cybersecurity measures and maintaining compliance with industry standards."
+                        ].map((item, i) => (
+                          <li key={i} className={`animate-fade-in delay-${(i + 1) * 100}`}>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <p className="text-muted-foreground mt-4">
+                      This role allowed me to gain hands-on experience and build a solid foundation in IT systems management.
+                    </p>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground mt-4">
+                      <span>Skills:</span>
+                      <span className="text-foreground">Systems Management, Management</span>
+                      <button 
+                        onClick={() => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })}
+                        className="text-muted-foreground hover:text-foreground"
+                      >
+                        Show all 6 skills
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Adventa Technologies Experience */}
+            <div className="card-spotify rounded-lg p-8 animate-scale-in hover-lift">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-card">
+                  <img 
+                    src="/adventa-logo.jpg" 
+                    alt="Adventa Logo" 
+                    className="w-full h-full object-contain p-1" 
+                  />
+                </div>
+                <div className="flex-grow">
+                  <h3 className="text-xl font-bold text-foreground">
+                    <a 
+                      href="https://www.linkedin.com/company/adventa-technologies/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="hover:text-primary transition-colors"
+                    >
+                      Adventa Technologies Pty Ltd
+                    </a>
+                  </h3>
+                  <p className="text-muted-foreground">Full-time · 1 yr 1 mo</p>
+                  <p className="text-sm text-muted-foreground/60 mb-2">Colombo District, Western Province, Sri Lanka · Hybrid</p>
+
+                  {/* Web Developer Role */}
+                  <div className="mt-6">
+                    <h4 className="text-lg font-semibold text-foreground">Web Developer</h4>
+                    <p className="text-sm text-muted-foreground/60 mb-4">Apr 2021 - Apr 2022 · 1 yr 1 mo</p>
+                    <div className="mb-4">
+                      <h5 className="text-foreground font-medium mb-2">Key Achievements:</h5>
+                      <ul className="space-y-3 text-muted-foreground list-disc pl-4">
+                        {[
+                          "Developed and launched 7 custom web applications using Bubble.io, enabling rapid prototyping and deployment for startups and small businesses.",
+                          "Designed and prototyped user-friendly web interfaces using Figma, ensuring visually appealing and intuitive user experiences that align with client branding.",
+                          "Built and maintained dynamic WordPress websites, integrating custom themes and plugins to meet specific client needs and enhance functionality.",
+                          "Utilized HTML5, CSS3, PHP and JavaScript to create responsive and interactive websites, ensuring optimal performance and user engagement across various devices and browsers.",
+                          "Integrated third-party services and APIs, such as payment gateways, CRM tools, and social media platforms, to enhance website functionality and user interaction."
+                        ].map((item, i) => (
+                          <li key={i} className={`animate-fade-in delay-${(i + 1) * 100}`}>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <span>Skills:</span>
+                      <span className="text-foreground">Prototyping, HTML5</span>
+                      <button 
+                        onClick={() => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })}
+                        className="text-muted-foreground hover:text-foreground"
+                      >
+                        Show all 20 skills
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
-        <div className="container px-4 md:px-6">
-          <h2 className="text-3xl font-bold tracking-tighter text-center mb-12 animate-fade-up">
-            Let's Connect
-          </h2>
-          <div className="flex justify-center space-x-6 animate-fade-up [--animation-delay:200ms]">
-            <a
-              href="https://www.linkedin.com/in/amoda-fernando/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:text-primary/80"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="https://github.com/fernand3z"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:text-primary/80"
-            >
-              GitHub
-            </a>
+        {/* Education Section */}
+        <section id="education" className="mb-24 animate-fade-in">
+          <h2 className="text-3xl font-bold mb-12 text-center gradient-text">Education</h2>
+          <div className="card-spotify rounded-lg p-8 animate-scale-in">
+            <h3 className="text-xl font-bold mb-6 text-foreground">Associate's degree, Computer Science</h3>
+            <h4 className="text-lg font-semibold mb-4 text-foreground">Relevant Coursework</h4>
+            <ul className="space-y-3 text-muted-foreground">
+              {[
+                "Introduction to Programming",
+                "Data Structures and Algorithms",
+                "Object-Oriented Programming",
+                "Web Development Fundamentals",
+                "Database Management Systems"
+              ].map((course, i) => (
+                <li key={course} className={`animate-fade-in delay-${(i + 1) * 100}`}>
+                  {course}
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* License & Certifications Section */}
+        <section id="certifications" className="animate-fade-in">
+          <h2 className="text-3xl font-bold mb-12 text-center gradient-text">License & Certifications</h2>
+          <div className="space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* First 4 certificates are always visible */}
+              {/* Additional certificates are shown based on visibleCertCount */}
+              {[
+                {
+                  title: "Career Essentials in GitHub",
+                  type: "Professional Certificate",
+                  issuer: "LinkedIn Learning and GitHub",
+                  date: "January 2025"
+                },
+                {
+                  title: "Career Essentials in System Administration",
+                  type: "Professional Certificate",
+                  issuer: "LinkedIn Learning and Microsoft",
+                  date: "January 2025"
+                },
+                {
+                  title: "Python Programming",
+                  type: "Advanced Certificate",
+                  issuer: "Coursera",
+                  date: "December 2024"
+                },
+                {
+                  title: "Full Stack Web Development",
+                  type: "Professional Certificate",
+                  issuer: "freeCodeCamp",
+                  date: "November 2024"
+                },
+                {
+                  title: "AWS Cloud Practitioner",
+                  type: "Cloud Certificate",
+                  issuer: "Amazon Web Services",
+                  date: "October 2024"
+                },
+                {
+                  title: "Docker Essentials",
+                  type: "Technical Certificate",
+                  issuer: "Docker",
+                  date: "September 2024"
+                },
+                {
+                  title: "Advanced JavaScript",
+                  type: "Programming Certificate",
+                  issuer: "Udemy",
+                  date: "August 2024"
+                },
+                {
+                  title: "Linux Administration",
+                  type: "System Certificate",
+                  issuer: "Linux Foundation",
+                  date: "July 2024"
+                },
+                {
+                  title: "React Development",
+                  type: "Frontend Certificate",
+                  issuer: "Meta",
+                  date: "June 2024"
+                },
+                {
+                  title: "TypeScript Mastery",
+                  type: "Programming Certificate",
+                  issuer: "Microsoft",
+                  date: "May 2024"
+                },
+                {
+                  title: "Node.js Development",
+                  type: "Backend Certificate",
+                  issuer: "OpenJS Foundation",
+                  date: "April 2024"
+                },
+                {
+                  title: "Database Management",
+                  type: "Technical Certificate",
+                  issuer: "MongoDB University",
+                  date: "March 2024"
+                }
+              ].slice(0, visibleCertCount).map((cert, index) => (
+                <div key={index} className={`card-spotify p-8 rounded-lg hover-lift animate-scale-in delay-${(index % 4 + 1) * 100} flex flex-col`}>
+                  <div>
+                    <h3 className="text-xl font-bold mb-3 text-foreground">{cert.title}</h3>
+                    <p className="text-muted-foreground mb-2">{cert.type}</p>
+                    <div className="flex justify-between items-center">
+                      <p className="text-sm text-muted-foreground">{cert.issuer}</p>
+                      <p className="text-sm text-muted-foreground">{cert.date}</p>
+                    </div>
+                  </div>
+                  <div className="mt-auto pt-4">
+                    <a href="#" className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-1 transition-colors group">
+                      <span className="group-hover:translate-x-1 transition-transform duration-200">View Certificate</span>
+                      <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Show More/Less Certificates Button */}
+            {visibleCertCount < 12 && (
+              <div className="flex justify-center">
+                <button
+                  onClick={handleShowMoreCerts}
+                  className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-2 transition-colors group"
+                >
+                  <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-transform duration-200">
+                    <span>Show More</span>
+                    <span className="transform transition-transform duration-200">↓</span>
+                  </div>
+                </button>
+              </div>
+            )}
+
+            {/* Show Less Button - only visible when all certificates are shown */}
+            {showingAllCerts && (
+              <div className="flex justify-center">
+                <button
+                  onClick={handleShowMoreCerts}
+                  className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-2 transition-colors group"
+                >
+                  <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-transform duration-200">
+                    <span>Show Less</span>
+                    <span className="transform transition-transform duration-200 rotate-180">↓</span>
+                  </div>
+                </button>
+              </div>
+            )}
+          </div>
+        </section>
+      </div>
     </div>
   )
 } 

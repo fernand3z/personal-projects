@@ -1,102 +1,72 @@
 "use client"
 
 import * as React from "react"
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from "@/components/ui/navigation-menu"
+import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
 
 export function Navbar() {
-  const { setTheme, theme } = useTheme()
+  const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
+  const [activeSection, setActiveSection] = React.useState("about")
 
   React.useEffect(() => {
     setMounted(true)
+    const handleScroll = () => {
+      const sections = ["about", "skills", "projects", "experience", "education", "certifications"]
+      const current = sections.find(section => {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          return rect.top <= 100 && rect.bottom >= 100
+        }
+        return false
+      })
+      if (current) setActiveSection(current)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
+      setActiveSection(sectionId)
     }
   }
 
-  if (!mounted) {
-    return null
-  }
+  if (!mounted) return null
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center justify-between">
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <button
-                onClick={() => scrollToSection("about")}
-                className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-              >
-                About
-              </button>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <button
-                onClick={() => scrollToSection("skills")}
-                className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-              >
-                Skills
-              </button>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <button
-                onClick={() => scrollToSection("projects")}
-                className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-              >
-                Projects
-              </button>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <button
-                onClick={() => scrollToSection("experience")}
-                className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-              >
-                Experience
-              </button>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <button
-                onClick={() => scrollToSection("education")}
-                className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-              >
-                Education
-              </button>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-              >
-                Contact
-              </button>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-
-        <Button
-          variant="ghost"
-          size="icon"
+    <header className="sticky top-0 z-50 bg-background/30 dark:bg-background/50 backdrop-blur-xl border-b border-border/40">
+      <nav className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
+        <div className="flex items-center space-x-6">
+          {["about", "skills", "projects", "experience", "education", "certifications"].map((section) => (
+            <button
+              key={section}
+              onClick={() => scrollToSection(section)}
+              className={`px-3 py-2 text-sm capitalize rounded-md transition-colors ${
+                activeSection === section
+                  ? "text-foreground font-medium bg-background/50 dark:text-foreground dark:bg-background/70"
+                  : "text-muted-foreground hover:text-foreground hover:bg-background/50 dark:hover:text-foreground dark:hover:bg-background/70"
+              }`}
+            >
+              {section}
+            </button>
+          ))}
+        </div>
+        <button
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="ml-auto"
+          className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-background/50 dark:hover:text-foreground dark:hover:bg-background/70 transition-colors"
         >
-          <SunIcon className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <MoonIcon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </div>
+          {theme === "dark" ? (
+            <SunIcon className="h-5 w-5" />
+          ) : (
+            <MoonIcon className="h-5 w-5" />
+          )}
+        </button>
+      </nav>
     </header>
   )
 } 
