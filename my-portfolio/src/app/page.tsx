@@ -256,7 +256,7 @@ export default function Home() {
 
         {/* Experience Section */}
         <section id="experience" className="mb-24 animate-fade-in">
-          <h2 className="text-3xl font-bold mb-12 text-center gradient-text">Experience</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center gradient-text">Work Experience</h2>
           <div className="space-y-8">
             {/* NUMBER PLATE CLINIC Experience */}
             <div className="card-spotify rounded-lg p-8 animate-scale-in hover-lift">
@@ -374,7 +374,7 @@ export default function Home() {
                       rel="noopener noreferrer"
                       className="hover:text-primary transition-colors"
                     >
-                      Adventa Technologies Pty Ltd
+                      Adventa Technologies Pvt Ltd
                     </a>
                   </h3>
                   <p className="text-muted-foreground">Full-time · 1 yr 1 mo</p>
