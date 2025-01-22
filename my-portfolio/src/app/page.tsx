@@ -625,27 +625,51 @@ export default function Page() {
         {/* Education Section */}
         <section id="education" className="mb-24 animate-fade-in">
           <h2 className="text-3xl font-bold mb-12 text-center gradient-text">Education</h2>
-          <Card className="hover-lift">
-            <CardHeader>
-              <CardTitle>Associate's degree, Computer Science</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <h4 className="text-lg font-semibold mb-4 text-foreground">Relevant Coursework</h4>
-              <ul className="space-y-3 text-muted-foreground">
-                {[
-                  "Introduction to Programming",
-                  "Data Structures and Algorithms",
-                  "Object-Oriented Programming",
-                  "Web Development Fundamentals",
-                  "Database Management Systems"
-                ].map((course, i) => (
-                  <li key={course} className={`animate-fade-in delay-${(i + 1) * 100}`}>
-                    {course}
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
+          <div className="space-y-6">
+            {/* Associate's Degree */}
+            <Card className="hover-lift">
+              <CardHeader className="pb-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-card">
+                    <img 
+                      src="/vta-logo.jpg" 
+                      alt="Vocational Training Authority Logo" 
+                      className="w-full h-full object-contain p-1" 
+                    />
+                  </div>
+                  <div>
+                    <CardTitle>Associate's degree, Computer Science</CardTitle>
+                    <CardDescription>
+                      <span className="block text-muted-foreground">Vocational Training Authority</span>
+                      <span className="block text-sm text-muted-foreground/60">Jan 2020 - Jan 2022</span>
+                    </CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+            </Card>
+
+            {/* Master's Degree */}
+            <Card className="hover-lift">
+              <CardHeader className="pb-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-card">
+                    <img 
+                      src="/uclan-logo.jpg" 
+                      alt="University of Central Lancashire Logo" 
+                      className="w-full h-full object-contain p-1" 
+                    />
+                  </div>
+                  <div>
+                    <CardTitle>Master's degree, Business Administration and Management</CardTitle>
+                    <CardDescription>
+                      <span className="block text-muted-foreground">University of Central Lancashire</span>
+                      <span className="block text-sm text-muted-foreground/60">Jan 2023 - Jan 2024</span>
+                    </CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+            </Card>
+          </div>
         </section>
 
         {/* License & Certifications Section */}
