@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { ChevronDown as ChevronDownIcon, ArrowRight as ArrowRightIcon } from "lucide-react"
 import Image from "next/image"
+import { Progress } from "@/components/ui/progress"
 
 const languages = [
   { name: "JavaScript", progress: 85 },
@@ -155,14 +156,8 @@ export default function Page() {
                   ].slice(0, showMoreSkills ? languages.length : 6).map((lang, index) => (
                     <div key={index} className="flex items-center gap-4">
                       <span className="text-sm font-medium text-foreground min-w-[100px]">{lang.name}</span>
-                      <div className="flex-1 flex items-center gap-3 hidden md:flex">
-                        <div className="flex-1 h-2.5 bg-[#2A2A2A] rounded-full overflow-hidden">
-                          <div
-                            className="h-full bg-[#666] rounded-full transition-all duration-300"
-                            style={{ width: `${lang.progress}%` }}
-                          />
-                        </div>
-                        <span className="text-sm text-muted-foreground w-[40px] text-right">{lang.progress}%</span>
+                      <div className="flex-1 hidden md:block md:w-[75%]">
+                        <Progress value={lang.progress} className="h-2" />
                       </div>
                     </div>
                   ))}
@@ -184,14 +179,8 @@ export default function Page() {
                   ].map((lang, i) => (
                     <div key={lang.name} className="flex items-center gap-4">
                       <span className="text-sm font-medium text-foreground min-w-[100px]">{lang.name}</span>
-                      <div className="flex-1 flex items-center gap-3 hidden md:flex">
-                        <div className="flex-1 h-2.5 bg-[#2A2A2A] rounded-full overflow-hidden">
-                          <div
-                            className="h-full bg-[#666] rounded-full transition-all duration-300"
-                            style={{ width: `${lang.progress}%` }}
-                          />
-                        </div>
-                        <span className="text-sm text-muted-foreground w-[40px] text-right">{lang.progress}%</span>
+                      <div className="flex-1 hidden md:block md:w-[75%]">
+                        <Progress value={lang.progress} className="h-2" />
                       </div>
                     </div>
                   ))}
@@ -211,14 +200,8 @@ export default function Page() {
                   ].slice(0, showMoreSkills ? tools.length : 6).map((tool, index) => (
                     <div key={index} className="flex items-center gap-4">
                       <span className="text-sm font-medium text-foreground min-w-[100px]">{tool.name}</span>
-                      <div className="flex-1 flex items-center gap-3 hidden md:flex">
-                        <div className="flex-1 h-2.5 bg-[#2A2A2A] rounded-full overflow-hidden">
-                          <div
-                            className="h-full bg-[#666] rounded-full transition-all duration-300"
-                            style={{ width: `${tool.progress}%` }}
-                          />
-                        </div>
-                        <span className="text-sm text-muted-foreground w-[40px] text-right">{tool.progress}%</span>
+                      <div className="flex-1 hidden md:block md:w-[75%]">
+                        <Progress value={tool.progress} className="h-2" />
                       </div>
                     </div>
                   ))}
@@ -240,14 +223,8 @@ export default function Page() {
                   ].map((tool, i) => (
                     <div key={tool.name} className="flex items-center gap-4">
                       <span className="text-sm font-medium text-foreground min-w-[100px]">{tool.name}</span>
-                      <div className="flex-1 flex items-center gap-3 hidden md:flex">
-                        <div className="flex-1 h-2.5 bg-[#2A2A2A] rounded-full overflow-hidden">
-                          <div
-                            className="h-full bg-[#666] rounded-full transition-all duration-300"
-                            style={{ width: `${tool.progress}%` }}
-                          />
-                        </div>
-                        <span className="text-sm text-muted-foreground w-[40px] text-right">{tool.progress}%</span>
+                      <div className="flex-1 hidden md:block md:w-[75%]">
+                        <Progress value={tool.progress} className="h-2" />
                       </div>
                     </div>
                   ))}
@@ -562,6 +539,65 @@ export default function Page() {
               </CardContent>
             </Card>
 
+            {/* Freelance WordPress Developer Experience */}
+            <Card className="hover-lift">
+              <CardHeader className="pb-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-card">
+                    <Image 
+                      src="/free-logo.ico" 
+                      alt="Freelance Logo" 
+                      width={48}
+                      height={48}
+                      className="w-full h-full object-contain p-1" 
+                    />
+                  </div>
+                  <div className="flex-grow">
+                    <CardTitle>Freelance WordPress Developer</CardTitle>
+                    <CardDescription>
+                      <span className="block text-muted-foreground">Self-employed · 6 mos</span>
+                      <span className="block text-sm text-muted-foreground/60">Remote</span>
+                    </CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="mt-2">
+                  <h4 className="text-lg font-semibold text-foreground">WordPress Developer</h4>
+                  <p className="text-sm text-muted-foreground/60 mb-4">Jun 2022 - Nov 2022 · 6 mos</p>
+                  <p className="text-muted-foreground mb-4">
+                    As a freelance WordPress developer, I specialized in creating custom e-commerce solutions and business websites, focusing on performance optimization and user experience.
+                  </p>
+                  <div className="mb-4">
+                    <h5 className="text-foreground font-medium mb-2">Key Achievements:</h5>
+                    <ul className="space-y-3 text-muted-foreground list-disc pl-4">
+                      {[
+                        "Developed and launched 2 full-scale e-commerce websites using WooCommerce, implementing custom payment gateways and shipping integrations.",
+                        "Created custom WordPress themes and plugins to meet specific client requirements and enhance website functionality.",
+                        "Optimized website performance achieving 90+ PageSpeed scores through caching, image optimization, and code minification.",
+                        "Implemented robust security measures including SSL, firewall configuration, and regular security audits.",
+                        "Provided comprehensive training to clients on WordPress CMS usage and content management."
+                      ].map((item, i) => (
+                        <li key={i} className={`animate-fade-in delay-${(i + 1) * 100}`}>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <span>Skills:</span>
+                    <span className="text-foreground">WordPress, WooCommerce, PHP</span>
+                    <button 
+                      onClick={() => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })}
+                      className="text-muted-foreground hover:text-foreground"
+                    >
+                      Show all 8 skills
+                    </button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Adventa Technologies Experience */}
             <Card className="hover-lift">
               <CardHeader className="pb-4">
@@ -729,73 +765,97 @@ export default function Page() {
                   title: "Career Essentials in GitHub",
                   type: "Professional Certificate",
                   issuer: "LinkedIn Learning and GitHub",
-                  date: "January 2025"
+                  date: "2025",
+                  link: "https://www.linkedin.com/learning/certificates/95ab038988c255d63db1db0dc4b018e87cca009032a26917b5f3cb7b06802a80",
+                  providers: [
+                    { name: "GitHub", url: "https://github.com", icon: "/github-logo.png" },
+                    { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
+                  ]
                 },
                 {
                   title: "Career Essentials in System Administration",
                   type: "Professional Certificate",
                   issuer: "LinkedIn Learning and Microsoft",
-                  date: "January 2025"
+                  date: "2025",
+                  link: "https://www.linkedin.com/learning/certificates/9b7ea63d32cd9a46772852f87edc3e13f32e8e6aefb95c4ebaa51ecb87c0b2b4",
+                  providers: [
+                    { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
+                    { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
+                  ]
                 },
                 {
-                  title: "Python Programming",
-                  type: "Advanced Certificate",
-                  issuer: "Coursera",
-                  date: "December 2024"
-                },
-                {
-                  title: "Full Stack Web Development",
+                  title: "Ubuntu Linux Professional Certificate",
                   type: "Professional Certificate",
-                  issuer: "freeCodeCamp",
-                  date: "November 2024"
+                  issuer: "Canonical",
+                  date: "2025",
+                  link: "https://www.linkedin.com/learning/certificates/92313e2481dd7891e2c805cf6f57c24041b3e22c982fc3471459972634f686a0",
+                  providers: [
+                    { name: "Canonical", url: "https://canonical.com", icon: "/canonical-logo.jpg" }
+                  ]
                 },
                 {
-                  title: "AWS Cloud Practitioner",
-                  type: "Cloud Certificate",
-                  issuer: "Amazon Web Services",
-                  date: "October 2024"
+                  title: "Career Essentials in Sustainable Tech",
+                  type: "Professional Certificate",
+                  issuer: "Microsoft and LinkedIn",
+                  date: "2025",
+                  link: "https://www.linkedin.com/learning/certificates/0ba4b2d71c34aeabf02cfea0f534d11dbb15e6a89be7d8e36a96ee34ed6f1e98",
+                  providers: [
+                    { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
+                    { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
+                  ]
                 },
                 {
-                  title: "Docker Essentials",
-                  type: "Technical Certificate",
-                  issuer: "Docker",
-                  date: "September 2024"
+                  title: "Zendesk Customer Service",
+                  type: "Professional Certificate",
+                  issuer: "Zendesk",
+                  date: "2025",
+                  link: "https://www.linkedin.com/learning/certificates/be5e562f9bf05dddc22d374603b35d8b93484a076d9d85ddcc1d1cab63c76f11",
+                  providers: [
+                    { name: "Zendesk", url: "https://zendesk.com", icon: "/zendesk-logo.jpg" }
+                  ]
                 },
                 {
-                  title: "Advanced JavaScript",
-                  type: "Programming Certificate",
-                  issuer: "Udemy",
-                  date: "August 2024"
+                  title: "Build Your Generative AI Productivity Skills",
+                  type: "Professional Certificate",
+                  issuer: "Microsoft and LinkedIn",
+                  date: "2024",
+                  link: "https://www.linkedin.com/learning/certificates/8101d556cce742a74ff9a4ce9bb64f354811a6ede16f5b885421716cbcd235e5",
+                  providers: [
+                    { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
+                    { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
+                  ]
                 },
                 {
-                  title: "Linux Administration",
-                  type: "System Certificate",
-                  issuer: "Linux Foundation",
-                  date: "July 2024"
+                  title: "Career Essentials in Generative AI",
+                  type: "Professional Certificate",
+                  issuer: "Microsoft and LinkedIn",
+                  date: "2024",
+                  link: "https://www.linkedin.com/learning/certificates/d4255dd847774f8bc86ad30aebe1cd089242bef805644c6a88b8e87a8dab063f",
+                  providers: [
+                    { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
+                    { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
+                  ]
                 },
                 {
-                  title: "React Development",
-                  type: "Frontend Certificate",
-                  issuer: "Meta",
-                  date: "June 2024"
-                },
-                {
-                  title: "TypeScript Mastery",
-                  type: "Programming Certificate",
+                  title: "Generative AI for Customer Service with Microsoft 365 Copilot",
+                  type: "Professional Certificate",
                   issuer: "Microsoft",
-                  date: "May 2024"
+                  date: "2024",
+                  link: "https://www.linkedin.com/learning/certificates/6cac185f1b410c460a9dea686cd5da12e45da8c5106707297ba2662ebbf49e6d",
+                  providers: [
+                    { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" }
+                  ]
                 },
                 {
-                  title: "Node.js Development",
-                  type: "Backend Certificate",
-                  issuer: "OpenJS Foundation",
-                  date: "April 2024"
-                },
-                {
-                  title: "Database Management",
-                  type: "Technical Certificate",
-                  issuer: "MongoDB University",
-                  date: "March 2024"
+                  title: "Microsoft Copilot for Productivity",
+                  type: "Professional Certificate",
+                  issuer: "Microsoft and LinkedIn",
+                  date: "2024",
+                  link: "https://www.linkedin.com/learning/certificates/da1c01eaac07fcac76025e1cd3d92f3cdf4ce89bc9dcdd5f817ca4044d7ac209",
+                  providers: [
+                    { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
+                    { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
+                  ]
                 }
               ].slice(0, visibleCertCount).map((cert, index) => (
                 <div key={index} className={`card-spotify p-8 rounded-lg hover-lift animate-scale-in delay-${(index % 4 + 1) * 100} flex flex-col`}>
@@ -807,11 +867,35 @@ export default function Page() {
                       <p className="text-sm text-muted-foreground">{cert.date}</p>
                     </div>
                   </div>
-                  <div className="mt-auto pt-4">
-                    <a href="#" className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-1 transition-colors group">
+                  <div className="mt-auto pt-4 flex justify-between items-center">
+                    <a 
+                      href={cert.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-1 transition-colors group"
+                    >
                       <span className="group-hover:translate-x-1 transition-transform duration-200">View Certificate</span>
                       <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
                     </a>
+                    <div className="flex gap-2">
+                      {cert.providers.map((provider, i) => (
+                        <a
+                          key={i}
+                          href={provider.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-6 h-6 opacity-70 hover:opacity-100 transition-opacity"
+                        >
+                          <Image
+                            src={provider.icon}
+                            alt={`${provider.name} logo`}
+                            width={24}
+                            height={24}
+                            className="w-full h-full object-contain"
+                          />
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ))}
