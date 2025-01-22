@@ -16,10 +16,10 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 export default function Page() {
-  const [showMore, setShowMore] = useState(false)
+  const [showMoreSkills, setShowMoreSkills] = useState(false)
   const [showMoreCerts, setShowMoreCerts] = useState(false)
   const [visibleProjectCount, setVisibleProjectCount] = useState(6)
-  const [visibleCertCount, setVisibleCertCount] = useState(4)
+  const [visibleCertCount, setVisibleCertCount] = useState(8)
 
   const additionalProjects = Array(6).fill({
     title: "Coming Soon",
@@ -48,8 +48,8 @@ export default function Page() {
 
   const showingAllCerts = visibleCertCount >= 12
 
-  const handleContact = (type: string) => {
-    switch(type) {
+  const handleContact = (platform: string) => {
+    switch(platform) {
       case 'gmail':
         window.location.href = 'mailto:fernand3zdev@gmail.com';
         break;
@@ -112,6 +112,7 @@ export default function Page() {
               <div className="animate-slide-in delay-100">
                 <h3 className="text-xl font-semibold mb-4 text-foreground">Languages</h3>
                 <div className="space-y-3">
+                  {/* Initial visible languages */}
                   {[
                     { name: "JavaScript", progress: 85 },
                     { name: "Python", progress: 78 },
@@ -135,11 +136,43 @@ export default function Page() {
                       </div>
                     </Card>
                   ))}
+                  
+                  {/* Additional languages (hidden by default) */}
+                  {showMoreSkills && [
+                    { name: "TypeScript", progress: 82 },
+                    { name: "PowerShell", progress: 85 },
+                    { name: "Bash", progress: 80 },
+                    { name: "C++", progress: 65 },
+                    { name: "Java", progress: 60 },
+                    { name: "Ruby", progress: 55 },
+                    { name: "Go", progress: 70 },
+                    { name: "Rust", progress: 60 },
+                    { name: "Kotlin", progress: 65 },
+                    { name: "Swift", progress: 55 },
+                    { name: "Scala", progress: 50 },
+                    { name: "R", progress: 45 }
+                  ].map((lang, i) => (
+                    <Card key={lang.name} className="p-2.5 hover-lift animate-fade-in" style={{ animationDelay: `${(i + 1) * 100}ms` }}>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-foreground min-w-[80px]">{lang.name}</span>
+                        <div className="flex-1">
+                          <div className="w-full bg-muted rounded-full h-1.5">
+                            <div 
+                              className="bg-primary h-1.5 rounded-full transition-all duration-500 ease-out"
+                              style={{ width: `${lang.progress}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                        <span className="text-xs text-muted-foreground ml-2 tabular-nums">{lang.progress}%</span>
+                      </div>
+                    </Card>
+                  ))}
                 </div>
               </div>
               <div className="animate-slide-in delay-200">
-                <h3 className="text-xl font-semibold mb-4 text-foreground">Tools</h3>
+                <h3 className="text-xl font-semibold mb-4 text-foreground">Tools & Technologies</h3>
                 <div className="space-y-3">
+                  {/* Initial visible tools */}
                   {[
                     { name: "Git", progress: 88 },
                     { name: "Docker", progress: 82 },
@@ -163,8 +196,52 @@ export default function Page() {
                       </div>
                     </Card>
                   ))}
+                  
+                  {/* Additional tools (hidden by default) */}
+                  {showMoreSkills && [
+                    { name: "AWS", progress: 75 },
+                    { name: "React", progress: 85 },
+                    { name: "Next.js", progress: 80 },
+                    { name: "MongoDB", progress: 70 },
+                    { name: "Nginx", progress: 75 },
+                    { name: "Jenkins", progress: 65 },
+                    { name: "Kubernetes", progress: 60 },
+                    { name: "Ansible", progress: 70 },
+                    { name: "Terraform", progress: 65 },
+                    { name: "Azure", progress: 70 },
+                    { name: "WordPress", progress: 85 },
+                    { name: "Figma", progress: 80 }
+                  ].map((tool, i) => (
+                    <Card key={tool.name} className="p-2.5 hover-lift animate-fade-in" style={{ animationDelay: `${(i + 1) * 100}ms` }}>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-foreground min-w-[80px]">{tool.name}</span>
+                        <div className="flex-1">
+                          <div className="w-full bg-muted rounded-full h-1.5">
+                            <div 
+                              className="bg-primary h-1.5 rounded-full transition-all duration-500 ease-out"
+                              style={{ width: `${tool.progress}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                        <span className="text-xs text-muted-foreground ml-2 tabular-nums">{tool.progress}%</span>
+                      </div>
+                    </Card>
+                  ))}
                 </div>
               </div>
+            </div>
+            
+            {/* Show More/Less Button */}
+            <div className="flex justify-center mt-8">
+              <button
+                onClick={() => setShowMoreSkills(!showMoreSkills)}
+                className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-2 transition-colors group"
+              >
+                <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-transform duration-200">
+                  <span>{showMoreSkills ? "Show Less" : "Show More"}</span>
+                  <span className={`transform transition-transform duration-200 ${showMoreSkills ? "rotate-180" : ""}`}>↓</span>
+                </div>
+              </button>
             </div>
           </div>
         </section>
