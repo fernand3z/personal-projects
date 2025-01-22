@@ -6,48 +6,52 @@
   :root {
     /* Light theme - Monochromatic with subtle green for links */
     --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 98%;
-    --card-foreground: 0 0% 3.9%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 150 100% 98%;  /* Very light green for links */
-    --primary-foreground: 0 0% 3.9%;
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 3.9%;
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 150 100% 98%;  /* Very light green for accents */
-    --accent-foreground: 0 0% 3.9%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 5% 96%;  /* Much lighter for progress bar background */
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --success: 142 76% 36%;
+    --success-foreground: 355.7 100% 97.3%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 150 100% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 142 76% 36%;
     --radius: 0.5rem;
   }
 
   .dark {
     /* Dark theme - Monochromatic with subtle green for links */
-    --background: 0 0% 7%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 9%;
-    --card-foreground: 0 0% 100%;
+    --background: 20 14.3% 4.1%;
+    --foreground: 0 0% 95%;
+    --card: 24 9.8% 10%;
+    --card-foreground: 0 0% 95%;
     --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 150 30% 96%;  /* Very light green for links */
-    --primary-foreground: 0 0% 7%;
-    --secondary: 0 0% 11%;
-    --secondary-foreground: 0 0% 100%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 5% 26%;  /* Darker but still visible for progress bar background */
+    --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 150 30% 96%;  /* Very light green for accents */
-    --accent-foreground: 0 0% 7%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 0 0% 98%;
+    --success: 142 70% 50%;  /* Brighter green in dark mode */
+    --success-foreground: 144.9 80.4% 10%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 150 30% 96%;
+    --destructive-foreground: 0 85.7% 97.3%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 142 70% 50%;
   }
 }
 
@@ -63,21 +67,21 @@
 
 /* Modern Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--card);
+  background: hsl(var(--background));
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--muted);
-  border-radius: 4px;
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--muted-foreground);
+  background: hsl(var(--primary) / 0.5);
 }
 
 /* Smooth Scroll */
@@ -86,7 +90,7 @@ html {
 }
 
 /* Animations */
-@keyframes fade-in {
+@keyframes slide-up {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -97,54 +101,37 @@ html {
   }
 }
 
-@keyframes scale-in {
+@keyframes slide-down {
   from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: translateY(-20px);
   }
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0);
   }
 }
 
-@keyframes slide-in-right {
+@keyframes fade-in {
   from {
     opacity: 0;
-    transform: translateX(20px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes blur-in {
-  from {
-    opacity: 0;
-    filter: blur(5px);
-  }
-  to {
-    opacity: 1;
-    filter: blur(0);
   }
 }
 
 /* Animation Classes */
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slide-down 0.5s ease-out forwards;
+}
+
 .animate-fade-in {
-  animation: fade-in 0.6s ease-out forwards;
-}
-
-.animate-scale-in {
-  animation: scale-in 0.5s ease-out forwards;
-}
-
-.animate-slide-in {
-  animation: slide-in-right 0.5s ease-out forwards;
-}
-
-.animate-blur-in {
-  animation: blur-in 0.5s ease-out forwards;
+  animation: fade-in 0.5s ease-out forwards;
 }
 
 /* Animation Delays */
@@ -166,7 +153,7 @@ html {
 
 /* Hover Effects */
 .hover-lift {
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease-out;
 }
 
 .hover-lift:hover {
@@ -205,11 +192,3 @@ html {
   @apply bg-card/80;
 }
 
-/* Hover lift effect */
-.hover-lift {
-  transition: transform 0.2s ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-2px);
-}

@@ -14,6 +14,37 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { ChevronDown as ChevronDownIcon, ArrowRight as ArrowRightIcon } from "lucide-react"
+
+const languages = [
+  { name: "JavaScript", progress: 85 },
+  { name: "Python", progress: 78 },
+  { name: "HTML", progress: 92 },
+  { name: "CSS", progress: 88 },
+  { name: "SQL", progress: 75 },
+  { name: "PHP", progress: 70 },
+  { name: "TypeScript", progress: 82 },
+  { name: "PowerShell", progress: 85 },
+  { name: "Bash", progress: 80 },
+  { name: "C++", progress: 65 },
+  { name: "Java", progress: 60 },
+  { name: "Ruby", progress: 55 }
+]
+
+const tools = [
+  { name: "Git", progress: 88 },
+  { name: "Docker", progress: 82 },
+  { name: "Linux", progress: 90 },
+  { name: "VS Code", progress: 95 },
+  { name: "Node.js", progress: 80 },
+  { name: "PostgreSQL", progress: 75 },
+  { name: "AWS", progress: 75 },
+  { name: "React", progress: 85 },
+  { name: "Next.js", progress: 80 },
+  { name: "MongoDB", progress: 70 },
+  { name: "Nginx", progress: 75 },
+  { name: "Jenkins", progress: 65 }
+]
 
 export default function Page() {
   const [showMoreSkills, setShowMoreSkills] = useState(false)
@@ -78,7 +109,7 @@ export default function Page() {
             <DropdownMenuTrigger asChild>
               <Button 
                 variant="default"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground animate-fade-in delay-300 hover-lift"
+                className="bg-success hover:bg-success/90 text-success-foreground animate-fade-in delay-300 hover-lift"
               >
                 Contact Me!
               </Button>
@@ -111,7 +142,7 @@ export default function Page() {
             <div className="grid grid-cols-2 gap-8">
               <div className="animate-slide-in delay-100">
                 <h3 className="text-xl font-semibold mb-4 text-foreground">Languages</h3>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   {/* Initial visible languages */}
                   {[
                     { name: "JavaScript", progress: 85 },
@@ -120,21 +151,19 @@ export default function Page() {
                     { name: "CSS", progress: 88 },
                     { name: "SQL", progress: 75 },
                     { name: "PHP", progress: 70 }
-                  ].map((lang, i) => (
-                    <Card key={lang.name} className="p-2.5 hover-lift animate-fade-in" style={{ animationDelay: `${(i + 1) * 100}ms` }}>
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-foreground min-w-[80px]">{lang.name}</span>
-                        <div className="flex-1">
-                          <div className="w-full bg-muted rounded-full h-1.5">
-                            <div 
-                              className="bg-primary h-1.5 rounded-full transition-all duration-500 ease-out"
-                              style={{ width: `${lang.progress}%` }}
-                            ></div>
-                          </div>
+                  ].slice(0, showMoreSkills ? languages.length : 6).map((lang, index) => (
+                    <div key={index} className="flex items-center gap-4">
+                      <span className="text-sm font-medium text-foreground min-w-[100px]">{lang.name}</span>
+                      <div className="flex-1 flex items-center gap-3">
+                        <div className="flex-1 h-2.5 bg-[#2A2A2A] rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-[#666] rounded-full transition-all duration-300"
+                            style={{ width: `${lang.progress}%` }}
+                          />
                         </div>
-                        <span className="text-xs text-muted-foreground ml-2 tabular-nums">{lang.progress}%</span>
+                        <span className="text-sm text-muted-foreground w-[40px] text-right">{lang.progress}%</span>
                       </div>
-                    </Card>
+                    </div>
                   ))}
                   
                   {/* Additional languages (hidden by default) */}
@@ -152,26 +181,24 @@ export default function Page() {
                     { name: "Scala", progress: 50 },
                     { name: "R", progress: 45 }
                   ].map((lang, i) => (
-                    <Card key={lang.name} className="p-2.5 hover-lift animate-fade-in" style={{ animationDelay: `${(i + 1) * 100}ms` }}>
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-foreground min-w-[80px]">{lang.name}</span>
-                        <div className="flex-1">
-                          <div className="w-full bg-muted rounded-full h-1.5">
-                            <div 
-                              className="bg-primary h-1.5 rounded-full transition-all duration-500 ease-out"
-                              style={{ width: `${lang.progress}%` }}
-                            ></div>
-                          </div>
+                    <div key={lang.name} className="flex items-center gap-4">
+                      <span className="text-sm font-medium text-foreground min-w-[100px]">{lang.name}</span>
+                      <div className="flex-1 flex items-center gap-3">
+                        <div className="flex-1 h-2.5 bg-[#2A2A2A] rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-[#666] rounded-full transition-all duration-300"
+                            style={{ width: `${lang.progress}%` }}
+                          />
                         </div>
-                        <span className="text-xs text-muted-foreground ml-2 tabular-nums">{lang.progress}%</span>
+                        <span className="text-sm text-muted-foreground w-[40px] text-right">{lang.progress}%</span>
                       </div>
-                    </Card>
+                    </div>
                   ))}
                 </div>
               </div>
               <div className="animate-slide-in delay-200">
                 <h3 className="text-xl font-semibold mb-4 text-foreground">Tools & Technologies</h3>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   {/* Initial visible tools */}
                   {[
                     { name: "Git", progress: 88 },
@@ -180,21 +207,19 @@ export default function Page() {
                     { name: "VS Code", progress: 95 },
                     { name: "Node.js", progress: 80 },
                     { name: "PostgreSQL", progress: 75 }
-                  ].map((tool, i) => (
-                    <Card key={tool.name} className="p-2.5 hover-lift animate-fade-in" style={{ animationDelay: `${(i + 1) * 100}ms` }}>
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-foreground min-w-[80px]">{tool.name}</span>
-                        <div className="flex-1">
-                          <div className="w-full bg-muted rounded-full h-1.5">
-                            <div 
-                              className="bg-primary h-1.5 rounded-full transition-all duration-500 ease-out"
-                              style={{ width: `${tool.progress}%` }}
-                            ></div>
-                          </div>
+                  ].slice(0, showMoreSkills ? tools.length : 6).map((tool, index) => (
+                    <div key={index} className="flex items-center gap-4">
+                      <span className="text-sm font-medium text-foreground min-w-[100px]">{tool.name}</span>
+                      <div className="flex-1 flex items-center gap-3">
+                        <div className="flex-1 h-2.5 bg-[#2A2A2A] rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-[#666] rounded-full transition-all duration-300"
+                            style={{ width: `${tool.progress}%` }}
+                          />
                         </div>
-                        <span className="text-xs text-muted-foreground ml-2 tabular-nums">{tool.progress}%</span>
+                        <span className="text-sm text-muted-foreground w-[40px] text-right">{tool.progress}%</span>
                       </div>
-                    </Card>
+                    </div>
                   ))}
                   
                   {/* Additional tools (hidden by default) */}
@@ -212,20 +237,18 @@ export default function Page() {
                     { name: "WordPress", progress: 85 },
                     { name: "Figma", progress: 80 }
                   ].map((tool, i) => (
-                    <Card key={tool.name} className="p-2.5 hover-lift animate-fade-in" style={{ animationDelay: `${(i + 1) * 100}ms` }}>
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-foreground min-w-[80px]">{tool.name}</span>
-                        <div className="flex-1">
-                          <div className="w-full bg-muted rounded-full h-1.5">
-                            <div 
-                              className="bg-primary h-1.5 rounded-full transition-all duration-500 ease-out"
-                              style={{ width: `${tool.progress}%` }}
-                            ></div>
-                          </div>
+                    <div key={tool.name} className="flex items-center gap-4">
+                      <span className="text-sm font-medium text-foreground min-w-[100px]">{tool.name}</span>
+                      <div className="flex-1 flex items-center gap-3">
+                        <div className="flex-1 h-2.5 bg-[#2A2A2A] rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-[#666] rounded-full transition-all duration-300"
+                            style={{ width: `${tool.progress}%` }}
+                          />
                         </div>
-                        <span className="text-xs text-muted-foreground ml-2 tabular-nums">{tool.progress}%</span>
+                        <span className="text-sm text-muted-foreground w-[40px] text-right">{tool.progress}%</span>
                       </div>
-                    </Card>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -233,15 +256,20 @@ export default function Page() {
             
             {/* Show More/Less Button */}
             <div className="flex justify-center mt-8">
-              <button
+              <Button
                 onClick={() => setShowMoreSkills(!showMoreSkills)}
-                className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-2 transition-colors group"
+                variant="outline"
+                className="mt-4 text-foreground hover:text-success hover:border-success transition-colors w-[140px]"
               >
-                <div className="flex items-center space-x-2 group-hover:translate-y-[-2px] transition-transform duration-200">
+                <div className="flex items-center justify-center space-x-2">
                   <span>{showMoreSkills ? "Show Less" : "Show More"}</span>
-                  <span className={`transform transition-transform duration-200 ${showMoreSkills ? "rotate-180" : ""}`}>↓</span>
+                  <ChevronDownIcon
+                    className={`h-4 w-4 transition-transform duration-200 ${
+                      showMoreSkills ? "rotate-180" : ""
+                    }`}
+                  />
                 </div>
-              </button>
+              </Button>
             </div>
           </div>
         </section>
@@ -266,17 +294,19 @@ export default function Page() {
                   </p>
                 </CardContent>
                 <CardFooter className="mt-auto">
-                  <a
-                    href="https://github.com/fernand3z/update-script"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-1 transition-colors group"
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="mt-4 text-foreground hover:text-success hover:border-success transition-colors"
                   >
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">
-                      View on GitHub
-                    </span>
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
-                  </a>
+                    <a
+                      href="https://github.com/fernand3z/update-script"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View on GitHub <ArrowRightIcon className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
                 </CardFooter>
               </Card>
 
@@ -294,17 +324,19 @@ export default function Page() {
                   </p>
                 </CardContent>
                 <CardFooter className="mt-auto">
-                  <a
-                    href="https://github.com/fernand3z/portfolio"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-1 transition-colors group"
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="mt-4 text-foreground hover:text-success hover:border-success transition-colors"
                   >
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">
-                      View on GitHub
-                    </span>
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
-                  </a>
+                    <a
+                      href="https://github.com/fernand3z/portfolio"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View on GitHub <ArrowRightIcon className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
                 </CardFooter>
               </Card>
 
@@ -322,15 +354,21 @@ export default function Page() {
                   </p>
                 </CardContent>
                 <CardFooter className="mt-auto">
-                  <a
-                    href="#"
-                    className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-1 transition-colors group"
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="mt-4 text-foreground hover:text-success hover:border-success transition-colors"
                   >
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">
-                      Coming Soon
-                    </span>
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
-                  </a>
+                    <a
+                      href="#"
+                      className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-1 transition-colors group"
+                    >
+                      <span className="group-hover:translate-x-1 transition-transform duration-200">
+                        Coming Soon
+                      </span>
+                      <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
+                    </a>
+                  </Button>
                 </CardFooter>
               </Card>
 

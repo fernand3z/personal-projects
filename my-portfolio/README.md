@@ -1,4 +1,4 @@
-# Personal Portfolio
+# My Portfolio
 
 A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS.
 
@@ -6,104 +6,103 @@ A modern, responsive portfolio website built with Next.js, TypeScript, and Tailw
 
 - 🌓 Dark/Light mode
 - 📱 Fully responsive
-- ⚡ Fast and optimized
+- ⚡ Optimized performance
 - 🎨 Modern UI with smooth animations
-- 🎯 SEO optimized
+- 🔍 SEO optimized
 
 ## Prerequisites
 
-- Node.js 18+ (LTS recommended)
+- Node.js 18+
 - npm or yarn
-- Git
+- AWS account
 
 ## Getting Started
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/my-portfolio.git
+git clone https://github.com/yourusername/my-portfolio.git
 cd my-portfolio
 ```
 
 2. Install dependencies:
 ```bash
 npm install
-# or
-yarn install
 ```
 
 3. Run the development server:
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit `http://localhost:3000` to see your portfolio.
 
-## Deployment to GitHub Pages
+## Deployment to AWS Amplify
 
-1. Create a new repository on GitHub named `my-portfolio`
+1. **Prepare Your Repository**
+   - Ensure your code is pushed to GitHub
+   - Your repository should include:
+     - `next.config.js`
+     - `package.json`
+     - `tsconfig.json`
+     - All source files
 
-2. Initialize git and push to GitHub:
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/your-username/my-portfolio.git
-git push -u origin main
+2. **Set Up AWS Amplify**
+   - Log in to your AWS Console
+   - Go to AWS Amplify
+   - Click "New App" → "Host web app"
+   - Choose GitHub as your repository source
+   - Select your portfolio repository
+   - Choose the main/master branch
+
+3. **Configure Build Settings**
+   - Amplify will automatically detect Next.js
+   - Use this build configuration:
+
+```yaml
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm install
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
 ```
 
-3. Create and switch to a new gh-pages branch:
-```bash
-git checkout -b gh-pages
-```
+4. **Deploy**
+   - Review your settings
+   - Click "Save and deploy"
+   - Amplify will provide a URL like `https://main.xxxxx.amplifyapp.com`
 
-4. Deploy to GitHub Pages:
-```bash
-npm run deploy
-```
-
-5. Configure GitHub Pages:
-   - Go to your repository settings
-   - Navigate to "Pages"
-   - Select "gh-pages" branch as the source
-   - Save the changes
-
-Your portfolio will be available at: `https://your-username.github.io/my-portfolio`
+5. **Custom Domain (Optional)**
+   - In Amplify Console, go to "Domain Management"
+   - Click "Add domain"
+   - Follow the steps to set up your custom domain
+   - AWS will provide SSL/TLS certificate automatically
 
 ## Tech Stack
 
-- [Next.js](https://nextjs.org/) - React framework
-- [TypeScript](https://www.typescriptlang.org/) - Type safety
-- [Tailwind CSS](https://tailwindcss.com/) - Styling
-- [shadcn/ui](https://ui.shadcn.com/) - UI components
-- [Radix UI](https://www.radix-ui.com/) - Headless UI components
-- [Lucide Icons](https://lucide.dev/) - Icons
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [Lucide Icons](https://lucide.dev/)
 
-## Project Structure
-
-```
-my-portfolio/
-├── public/          # Static files
-├── src/
-│   ├── app/         # App routes and pages
-│   ├── components/  # React components
-│   │   ├── ui/     # UI components
-│   │   └── ...     # Other components
-│   └── lib/        # Utility functions
-├── styles/         # Global styles
-└── ...            # Config files
-```
-
-## Available Scripts
+## Scripts
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
-- `npm run start` - Start production server
+- `npm start` - Start production server
 - `npm run lint` - Run ESLint
-- `npm run deploy` - Deploy to GitHub Pages
 
 ## License
 
-MIT License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
