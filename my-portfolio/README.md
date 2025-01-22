@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Personal Portfolio
+
+A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS.
+
+## Features
+
+- 🌓 Dark/Light mode
+- 📱 Fully responsive
+- ⚡ Fast and optimized
+- 🎨 Modern UI with smooth animations
+- 🎯 SEO optimized
+
+## Prerequisites
+
+- Node.js 18+ (LTS recommended)
+- npm or yarn
+- Git
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/my-portfolio.git
+cd my-portfolio
+```
 
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Run the development server:
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Deployment to GitHub Pages
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Create a new repository on GitHub named `my-portfolio`
 
-## Learn More
+2. Initialize git and push to GitHub:
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/your-username/my-portfolio.git
+git push -u origin main
+```
 
-To learn more about Next.js, take a look at the following resources:
+3. Create and switch to a new gh-pages branch:
+```bash
+git checkout -b gh-pages
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Deploy to GitHub Pages:
+```bash
+npm run deploy
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. Configure GitHub Pages:
+   - Go to your repository settings
+   - Navigate to "Pages"
+   - Select "gh-pages" branch as the source
+   - Save the changes
 
-## Deploy on Vercel
+Your portfolio will be available at: `https://your-username.github.io/my-portfolio`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Next.js](https://nextjs.org/) - React framework
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [shadcn/ui](https://ui.shadcn.com/) - UI components
+- [Radix UI](https://www.radix-ui.com/) - Headless UI components
+- [Lucide Icons](https://lucide.dev/) - Icons
+
+## Project Structure
+
+```
+my-portfolio/
+├── public/          # Static files
+├── src/
+│   ├── app/         # App routes and pages
+│   ├── components/  # React components
+│   │   ├── ui/     # UI components
+│   │   └── ...     # Other components
+│   └── lib/        # Utility functions
+├── styles/         # Global styles
+└── ...            # Config files
+```
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run deploy` - Deploy to GitHub Pages
+
+## License
+
+MIT License

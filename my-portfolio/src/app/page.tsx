@@ -107,27 +107,63 @@ export default function Home() {
         {/* Skills Section */}
         <section id="skills" className="mb-24 animate-fade-in">
           <h2 className="text-3xl font-bold mb-12 text-center gradient-text">Skills && Technologies</h2>
-          <div className="card-spotify rounded-lg p-8">
-            <div className="grid grid-cols-2 gap-12">
+          <div className="card-spotify rounded-lg p-6">
+            <div className="grid grid-cols-2 gap-8">
               <div className="animate-slide-in delay-100">
-                <h3 className="text-xl font-semibold mb-6 text-foreground">Languages</h3>
-                <ul className="space-y-3 text-muted-foreground">
-                  {["JavaScript", "Python", "HTML", "CSS", "SQL", "PHP"].map((lang, i) => (
-                    <li key={lang} className={`animate-fade-in delay-${(i + 1) * 100}`}>
-                      {lang}
-                    </li>
+                <h3 className="text-xl font-semibold mb-4 text-foreground">Languages</h3>
+                <div className="space-y-3">
+                  {[
+                    { name: "JavaScript", progress: 85 },
+                    { name: "Python", progress: 78 },
+                    { name: "HTML", progress: 92 },
+                    { name: "CSS", progress: 88 },
+                    { name: "SQL", progress: 75 },
+                    { name: "PHP", progress: 70 }
+                  ].map((lang, i) => (
+                    <Card key={lang.name} className="p-2.5 hover-lift animate-fade-in" style={{ animationDelay: `${(i + 1) * 100}ms` }}>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-foreground min-w-[80px]">{lang.name}</span>
+                        <div className="flex-1">
+                          <div className="w-full bg-muted rounded-full h-1.5">
+                            <div 
+                              className="bg-primary h-1.5 rounded-full transition-all duration-500 ease-out"
+                              style={{ width: `${lang.progress}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                        <span className="text-xs text-muted-foreground ml-2 tabular-nums">{lang.progress}%</span>
+                      </div>
+                    </Card>
                   ))}
-                </ul>
+                </div>
               </div>
               <div className="animate-slide-in delay-200">
-                <h3 className="text-xl font-semibold mb-6 text-foreground">Tools</h3>
-                <ul className="space-y-3 text-muted-foreground">
-                  {["Git", "Docker", "Linux", "VS Code", "Node.js", "PostgreSQL"].map((tool, i) => (
-                    <li key={tool} className={`animate-fade-in delay-${(i + 1) * 100}`}>
-                      {tool}
-                    </li>
+                <h3 className="text-xl font-semibold mb-4 text-foreground">Tools</h3>
+                <div className="space-y-3">
+                  {[
+                    { name: "Git", progress: 88 },
+                    { name: "Docker", progress: 82 },
+                    { name: "Linux", progress: 90 },
+                    { name: "VS Code", progress: 95 },
+                    { name: "Node.js", progress: 80 },
+                    { name: "PostgreSQL", progress: 75 }
+                  ].map((tool, i) => (
+                    <Card key={tool.name} className="p-2.5 hover-lift animate-fade-in" style={{ animationDelay: `${(i + 1) * 100}ms` }}>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-foreground min-w-[80px]">{tool.name}</span>
+                        <div className="flex-1">
+                          <div className="w-full bg-muted rounded-full h-1.5">
+                            <div 
+                              className="bg-primary h-1.5 rounded-full transition-all duration-500 ease-out"
+                              style={{ width: `${tool.progress}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                        <span className="text-xs text-muted-foreground ml-2 tabular-nums">{tool.progress}%</span>
+                      </div>
+                    </Card>
                   ))}
-                </ul>
+                </div>
               </div>
             </div>
           </div>
