@@ -750,6 +750,88 @@ export default function Page() {
                 </div>
               </CardHeader>
             </Card>
+
+            {/* CS50 Course */}
+            <Card className="hover-lift">
+              <CardHeader className="pb-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-card">
+                    <a 
+                      href="https://cs50.harvard.edu/x" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="cursor-pointer transition-opacity hover:opacity-80"
+                    >
+                      <Image 
+                        src="/harvard-logo.jpg" 
+                        alt="Harvard University Logo" 
+                        width={48}
+                        height={48}
+                        className="w-full h-full object-contain p-1" 
+                      />
+                    </a>
+                  </div>
+                  <div>
+                    <a 
+                      href="https://cs50.harvard.edu/x" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="hover:text-primary transition-colors"
+                    >
+                      <CardTitle>CS50's Introduction to Computer Science</CardTitle>
+                    </a>
+                    <CardDescription>
+                      <span className="block text-muted-foreground">Harvard University</span>
+                      <span className="block text-sm text-muted-foreground/60">In Progress</span>
+                      <span className="inline-flex items-center px-2.5 py-0.5 mt-2 rounded-full text-xs font-medium bg-success/10 text-success">
+                        Currently Studying
+                      </span>
+                    </CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+            </Card>
+
+            {/* freeCodeCamp */}
+            <Card className="hover-lift">
+              <CardHeader className="pb-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-card">
+                    <a 
+                      href="https://www.freecodecamp.org" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="cursor-pointer transition-opacity hover:opacity-80"
+                    >
+                      <Image 
+                        src="/freecodecamp-logo.jpg" 
+                        alt="freeCodeCamp Logo" 
+                        width={48}
+                        height={48}
+                        className="w-full h-full object-contain p-1" 
+                      />
+                    </a>
+                  </div>
+                  <div>
+                    <a 
+                      href="https://www.freecodecamp.org" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="hover:text-primary transition-colors"
+                    >
+                      <CardTitle>Full Stack Development Curriculum</CardTitle>
+                    </a>
+                    <CardDescription>
+                      <span className="block text-muted-foreground">freeCodeCamp</span>
+                      <span className="block text-sm text-muted-foreground/60">In Progress</span>
+                      <span className="inline-flex items-center px-2.5 py-0.5 mt-2 rounded-full text-xs font-medium bg-success/10 text-success">
+                        Currently Studying
+                      </span>
+                    </CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+            </Card>
           </div>
         </section>
 
