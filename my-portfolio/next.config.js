@@ -4,7 +4,7 @@ const nextConfig = {
   swcMinify: true,
   images: {
     unoptimized: true,
-    domains: ['localhost']
+    domains: ['localhost', 'media.licdn.com']
   },
 }
 
