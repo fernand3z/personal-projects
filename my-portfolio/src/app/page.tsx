@@ -362,12 +362,10 @@ export default function Page() {
                   >
                     <a
                       href="#"
-                      className="text-muted-foreground hover:text-foreground inline-flex items-center space-x-1 transition-colors group"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      <span className="group-hover:translate-x-1 transition-transform duration-200">
-                        Coming Soon
-                      </span>
-                      <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
+                      Comming Soon <ArrowRightIcon className="ml-2 h-4 w-4" />
                     </a>
                   </Button>
                 </CardFooter>
