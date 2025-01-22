@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "next build && touch out/.nojekyll && git add out/ && git commit -m \"Deploy to gh-pages\" && git subtree push --prefix out origin gh-pages"
+    "export": "next export",
+    "deploy": "next build && touch out/.nojekyll && git add out/ && git commit -m \"Deploy to gh-pages\" && git subtree push --prefix out origin gh-pages",
+    "clean": "rm -rf .next out",
+    "build:gh-pages": "npm run clean && npm run build"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.0.6",

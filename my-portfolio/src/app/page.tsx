@@ -15,7 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-export default function Home() {
+export default function Page() {
   const [showMore, setShowMore] = useState(false)
   const [showMoreCerts, setShowMoreCerts] = useState(false)
   const [visibleProjectCount, setVisibleProjectCount] = useState(6)
