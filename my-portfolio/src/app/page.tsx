@@ -154,7 +154,7 @@ export default function Page() {
                   ].slice(0, showMoreSkills ? languages.length : 6).map((lang, index) => (
                     <div key={index} className="flex items-center gap-4">
                       <span className="text-sm font-medium text-foreground min-w-[100px]">{lang.name}</span>
-                      <div className="flex-1 flex items-center gap-3">
+                      <div className="flex-1 flex items-center gap-3 hidden md:flex">
                         <div className="flex-1 h-2.5 bg-[#2A2A2A] rounded-full overflow-hidden">
                           <div
                             className="h-full bg-[#666] rounded-full transition-all duration-300"
@@ -183,7 +183,7 @@ export default function Page() {
                   ].map((lang, i) => (
                     <div key={lang.name} className="flex items-center gap-4">
                       <span className="text-sm font-medium text-foreground min-w-[100px]">{lang.name}</span>
-                      <div className="flex-1 flex items-center gap-3">
+                      <div className="flex-1 flex items-center gap-3 hidden md:flex">
                         <div className="flex-1 h-2.5 bg-[#2A2A2A] rounded-full overflow-hidden">
                           <div
                             className="h-full bg-[#666] rounded-full transition-all duration-300"
@@ -210,7 +210,7 @@ export default function Page() {
                   ].slice(0, showMoreSkills ? tools.length : 6).map((tool, index) => (
                     <div key={index} className="flex items-center gap-4">
                       <span className="text-sm font-medium text-foreground min-w-[100px]">{tool.name}</span>
-                      <div className="flex-1 flex items-center gap-3">
+                      <div className="flex-1 flex items-center gap-3 hidden md:flex">
                         <div className="flex-1 h-2.5 bg-[#2A2A2A] rounded-full overflow-hidden">
                           <div
                             className="h-full bg-[#666] rounded-full transition-all duration-300"
@@ -239,7 +239,7 @@ export default function Page() {
                   ].map((tool, i) => (
                     <div key={tool.name} className="flex items-center gap-4">
                       <span className="text-sm font-medium text-foreground min-w-[100px]">{tool.name}</span>
-                      <div className="flex-1 flex items-center gap-3">
+                      <div className="flex-1 flex items-center gap-3 hidden md:flex">
                         <div className="flex-1 h-2.5 bg-[#2A2A2A] rounded-full overflow-hidden">
                           <div
                             className="h-full bg-[#666] rounded-full transition-all duration-300"
