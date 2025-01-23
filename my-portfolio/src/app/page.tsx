@@ -165,17 +165,15 @@ export default function Page() {
                   {/* Additional languages (hidden by default) */}
                   {showMoreSkills && [
                     { name: "TypeScript", progress: 82 },
-                    { name: "PowerShell", progress: 85 },
-                    { name: "Bash", progress: 80 },
-                    { name: "C++", progress: 65 },
-                    { name: "Java", progress: 60 },
-                    { name: "Ruby", progress: 55 },
-                    { name: "Go", progress: 70 },
-                    { name: "Rust", progress: 60 },
-                    { name: "Kotlin", progress: 65 },
-                    { name: "Swift", progress: 55 },
-                    { name: "Scala", progress: 50 },
-                    { name: "R", progress: 45 }
+                    { name: "PowerShell", progress: 65 },
+                    { name: "Bash", progress: 70 },
+                    { name: "C", progress: 35 },
+                    { name: "Java", progress: 30 },
+                    { name: "Go", progress: 8 },
+                    { name: "GraphQL", progress: 15 },
+                    { name: "Rust", progress: 5 },
+                   // { name: "Solidity", progress: 30 },
+                    { name: "Shell Scripting", progress: 75 }
                   ].map((lang, i) => (
                     <div key={lang.name} className="flex items-center gap-4">
                       <span className="text-sm font-medium text-foreground min-w-[100px]">{lang.name}</span>
@@ -212,14 +210,20 @@ export default function Page() {
                     { name: "React", progress: 85 },
                     { name: "Next.js", progress: 80 },
                     { name: "MongoDB", progress: 70 },
-                    { name: "Nginx", progress: 75 },
-                    { name: "Jenkins", progress: 65 },
-                    { name: "Kubernetes", progress: 60 },
-                    { name: "Ansible", progress: 70 },
-                    { name: "Terraform", progress: 65 },
-                    { name: "Azure", progress: 70 },
+                    { name: "Nginx", progress: 65 },
+                    { name: "Azure", progress: 50 },
                     { name: "WordPress", progress: 85 },
-                    { name: "Figma", progress: 80 }
+                    { name: "Figma", progress: 80 },
+                    { name: "Kubernetes", progress: 5 },
+                   // { name: "Jenkins", progress: 55 },
+                   // { name: "Terraform", progress: 45 },
+                   // { name: "Redis", progress: 65 },
+                    { name: "GitHub Actions", progress: 50 },
+                    { name: "Tailwind CSS", progress: 85 },
+                  // { name: "Prisma", progress: 70 },
+                   // { name: "Vercel", progress: 80 },
+                   // { name: "Postman", progress: 85 },
+                    { name: "Firebase", progress: 50 }
                   ].map((tool, i) => (
                     <div key={tool.name} className="flex items-center gap-4">
                       <span className="text-sm font-medium text-foreground min-w-[100px]">{tool.name}</span>
@@ -872,17 +876,29 @@ export default function Page() {
                   date: "2025",
                   link: "https://www.linkedin.com/learning/certificates/92313e2481dd7891e2c805cf6f57c24041b3e22c982fc3471459972634f686a0",
                   providers: [
-                    { name: "Canonical", url: "https://canonical.com", icon: "/canonical-logo.jpg" }
+                    { name: "Canonical", url: "https://canonical.com", icon: "/canonical-logo.jpg" },
+                    { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
                   ]
                 },
                 {
                   title: "Career Essentials in Sustainable Tech",
                   type: "Professional Certificate",
                   issuer: "Microsoft and LinkedIn",
-                  date: "2025",
+                  date: "2024",
                   link: "https://www.linkedin.com/learning/certificates/0ba4b2d71c34aeabf02cfea0f534d11dbb15e6a89be7d8e36a96ee34ed6f1e98",
                   providers: [
                     { name: "Microsoft", url: "https://microsoft.com", icon: "/microsoft-logo.png" },
+                    { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
+                  ]
+                },
+                {
+                  title: "Docker Foundations",
+                  type: "Professional Certificate",
+                  issuer: "Docker",
+                  date: "2024",
+                  link: "https://www.linkedin.com/learning/certificates/23f5265eada7fe3a3d6ed85f7271f2376f1a09c6902cc3c78fd7ae8ec59ffad6",
+                  providers: [
+                    { name: "Docker", url: "https://docker.com", icon: "/docker-logo.jpg" },
                     { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
                   ]
                 },
@@ -893,7 +909,8 @@ export default function Page() {
                   date: "2025",
                   link: "https://www.linkedin.com/learning/certificates/be5e562f9bf05dddc22d374603b35d8b93484a076d9d85ddcc1d1cab63c76f11",
                   providers: [
-                    { name: "Zendesk", url: "https://zendesk.com", icon: "/zendesk-logo.jpg" }
+                    { name: "Zendesk", url: "https://zendesk.com", icon: "/zendesk-logo.jpg" },
+                    { name: "LinkedIn", url: "https://linkedin.com", icon: "/linkedin-logo.png" }
                   ]
                 },
                 {
