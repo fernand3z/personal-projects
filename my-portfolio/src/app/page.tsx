@@ -194,7 +194,8 @@ export default function Page() {
                     { name: "Linux", progress: 90 },
                     { name: "VS Code", progress: 95 },
                     { name: "Node.js", progress: 80 },
-                    { name: "PostgreSQL", progress: 75 }
+                    { name: "WordPress", progress: 85 },
+                    
                   ].slice(0, showMoreSkills ? tools.length : 6).map((tool, index) => (
                     <div key={index} className="flex items-center gap-4">
                       <span className="text-sm font-medium text-foreground min-w-[100px]">{tool.name}</span>
@@ -212,7 +213,7 @@ export default function Page() {
                     { name: "MongoDB", progress: 70 },
                     { name: "Nginx", progress: 65 },
                     { name: "Azure", progress: 50 },
-                    { name: "WordPress", progress: 85 },
+                    { name: "PostgreSQL", progress: 75 },
                     { name: "Figma", progress: 80 },
                     { name: "Kubernetes", progress: 5 },
                    // { name: "Jenkins", progress: 55 },
